@@ -39,6 +39,8 @@ class SimpleViewController: UIViewController {
 		phoneNumberTextField.font = UIFont.systemFont(ofSize: 14)
 
 		// Custom the size/edgeInsets of the flag button
+        phoneNumberTextField.arrowImage = UIImage(named: "black-arrow-down")
+        phoneNumberTextField.separationColor = .black
 		phoneNumberTextField.flagButtonSize = CGSize(width: 35, height: 35)
 		phoneNumberTextField.flagButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
 
