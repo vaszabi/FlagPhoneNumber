@@ -22,7 +22,7 @@ open class FPNTextField: UITextField {
     
     /// The size of the leftView
     private var leftViewSize: CGSize {
-        let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 30
+        let width = flagButtonSize.width + getWidth(text: phoneCodeTextField.text!) + 20
         let height = bounds.height
         
         return CGSize(width: width, height: height)
@@ -41,24 +41,10 @@ open class FPNTextField: UITextField {
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
-    
-    private var separationLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "|"
-        label.textAlignment = .center
-        return label
-    }()
-    
+        
     open var arrowImage: UIImage? {
         didSet {
             arrowImageView.image = arrowImage
-        }
-    }
-    
-    open var separationColor: UIColor = .black {
-        didSet {
-            separationLabel.textColor = separationColor
         }
     }
     
@@ -131,7 +117,6 @@ open class FPNTextField: UITextField {
         setupFlagButton()
         setupPhoneCodeTextField()
         setupArrowImageView()
-        setupSeparationLabel()
         setupLeftView()
         
         keyboardType = .numberPad
@@ -165,11 +150,6 @@ open class FPNTextField: UITextField {
         arrowImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(displayCountries)))
     }
     
-    private func setupSeparationLabel() {
-        separationLabel.font = font
-        separationLabel.textColor = separationColor
-    }
-    
     private func setupLeftView() {
         leftView = UIView()
         leftViewMode = .always
@@ -180,7 +160,6 @@ open class FPNTextField: UITextField {
         leftView?.addSubview(flagButton)
         leftView?.addSubview(phoneCodeTextField)
         leftView?.addSubview(arrowImageView)
-        leftView?.addSubview(separationLabel)
         
         flagWidthConstraint = NSLayoutConstraint(item: flagButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: flagButtonSize.width)
         flagHeightConstraint = NSLayoutConstraint(item: flagButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: flagButtonSize.height)
@@ -199,10 +178,6 @@ open class FPNTextField: UITextField {
         NSLayoutConstraint(item: arrowImageView, attribute: .leading, relatedBy: .equal, toItem: phoneCodeTextField, attribute: .trailing, multiplier: 1, constant: 5).isActive = true
         NSLayoutConstraint(item: arrowImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 14).isActive = true
         NSLayoutConstraint(item: arrowImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 14).isActive = true
-        
-        NSLayoutConstraint(item: separationLabel, attribute: .centerY, relatedBy: .equal, toItem: leftView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
-        NSLayoutConstraint(item: separationLabel, attribute: .trailing, relatedBy: .equal, toItem: leftView, attribute: .trailing, multiplier: 1, constant: -5).isActive = true
-        NSLayoutConstraint(item: separationLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 3).isActive = true
     }
     
     open override func updateConstraints() {
