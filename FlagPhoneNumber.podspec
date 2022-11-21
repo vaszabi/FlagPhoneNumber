@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
 
 	s.ios.deployment_target = '10.0'
 	s.source_files = 'Sources/**/*.swift'
-	s.resource_bundles = {'FlagPhoneNumber' => ['Sources/Resources/**/*']}
+	s.resource = 'Sources/Resources/**/*'
 	s.swift_version = '5.0'
 	s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
 
